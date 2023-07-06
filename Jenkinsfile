@@ -55,7 +55,7 @@ pipeline {
 
     stage('SonarQube analysis') {
       steps {
-        withSonarQubeEnv(credentialsId: 'd5db0194b1f3d30dd7d5cc3c155f9154d17fcc44', installationName: 'sonarqube') {
+        withSonarQubeEnv(credentialsId: '36565cbfb40152da0b79c057414ba1c6373f6ce4', installationName: 'java_sec_demo-main') {
           withMaven(maven : 'mvn-3.6.3') {
             sh 'mvn sonar:sonar -Dsonar.dependencyCheck.jsonReportPath=target/dependency-check-report.json -Dsonar.dependencyCheck.xmlReportPath=target/dependency-check-report.xml -Dsonar.dependencyCheck.htmlReportPath=target/dependency-check-report.html -Dsonar.java.pmd.reportPaths=target/pmd.xml -Dsonar.java.spotbugs.reportPaths=target/spotbugsXml.xml -Dsonar.zaproxy.reportPath=target/zap-reports/zapReport.xml -Dsonar.zaproxy.htmlReportPath=target/zap-reports/zapReport.html'
           }
