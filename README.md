@@ -24,3 +24,7 @@ cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 84a581bee2c547d6bff0327e482515f6
 ```
+
+token
+
+84a581bee2c547d6bff0327e482515f6: d5db0194b1f3d30dd7d5cc3c155f9154d17fcc44
