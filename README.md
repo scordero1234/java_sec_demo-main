@@ -71,8 +71,185 @@ docker exec -it 4a8b19d6829 /bin/bash
 cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
+Administración de Jenkins
+``` 
+username: scordero
+password: 2303
+```
+![Alt text](image-10.png)
+
+Creamos una nueva tarea
+![Alt text](image-11.png)
+
+## Configuracion de la tarea 
+### Agregamos el proyecto desde GitHub
+```
+ https://github.com/scordero1234/java_sec_demo-main.git
+```
+![Alt text](image-13.png)
+
+
+### Agregamos maven 
+![Alt text](image-14.png)
+### Agregamos jdk
+![Alt text](image-15.png)
+
+![Alt text](image-16.png)
 ##  Resultado del comando
 ![Alt text](image-8.png)
+# Errores
+Error 1:
+```bash
+Started by user Santiago Cordero
+hudson.plugins.git.GitException: Command "git fetch --tags --force --progress --prune -- origin +refs/heads/master:refs/remotes/origin/master" returned status code 128:
+stdout: 
+stderr: fatal: couldn't find remote ref refs/heads/master
+
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.launchCommandIn(CliGitAPIImpl.java:2842)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl.launchCommandWithCredentials(CliGitAPIImpl.java:2185)
+	at org.jenkinsci.plugins.gitclient.CliGitAPIImpl$1.execute(CliGitAPIImpl.java:635)
+	at jenkins.plugins.git.GitSCMFileSystem$BuilderImpl.build(GitSCMFileSystem.java:406)
+	at jenkins.scm.api.SCMFileSystem.of(SCMFileSystem.java:219)
+	at org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:118)
+	at org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition.create(CpsScmFlowDefinition.java:70)
+	at org.jenkinsci.plugins.workflow.job.WorkflowRun.run(WorkflowRun.java:312)
+	at hudson.model.ResourceController.execute(ResourceController.java:101)
+	at hudson.model.Executor.run(Executor.java:442)
+Finished: FAILURE
+```
+Solucion
+```bash
+Utilizar la rama desarrollo en el git hub
+```
+Error 2:
+```bash
+User
+java.lang.NoSuchMethodError: No such DSL method 'dependencyCheckPublisher'
+```
+Solucion
+```bash 
+Instalar el plugin
+OWASP Dependency-Check Plugin
+```
+Error 3:
+```
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: fdf6955b-fc70-4972-b4b5-16cd7f20f6f4
+java.lang.NoSuchMethodError: No such DSL method 'spotBugs' found among steps [archive, bat, build, catchError, checkout, deleteDir, dependencyCheckPublisher, dir, echo, emailext, emailextrecipients, envVarsForTool, error, fileExists, findBuildScans, getContext, git, input, isUnix, junit, library, libraryResource, load, mail, milestone, node, parallel, powershell, properties, publishChecks, pwd, pwsh, readFile, readTrusted, resolveScm, retry, script, sh, sleep, stage, stash, step, timeout, timestamps, tm, tool, unarchive, unstable, unstash, validateDeclarativePipeline, waitForBuild, waitUntil, warnError, withChecks, withContext, withCredentials, withEnv, withGradle, withMaven, wrap, writeFile, ws] or symbols [GitUsernamePassword, agent, all, allBranchesSame, allOf, always, ant, antFromApache, antOutcome, antTarget, any, anyOf, apiToken, apiTokenProperty, architecture, archiveArtifacts, artifactManager, artifactsPublisher, assembla, authorInChangelog, authorizationMatrix, batchFile, bitbucket, bitbucketServer, booleanParam, branch, brokenBuildSuspects, brokenTestsSuspects, browser, buildButton, buildDiscarder, buildDiscarders, buildRetention, buildSingleRevisionOnly, buildUser, buildingTag, builtInNode, caseInsensitive, caseSensitive, certificate, cgit, changeRequest, changelog, changelogBase, changelogToBranch, changeset, checkoutOption, checkoutToSubdirectory, choice, choiceParam, cleanAfterCheckout, cleanBeforeCheckout, cleanWs, clock, cloneOption, command, concordionPublisher, configFile, configFileProvider, contributor, credentials, cron, crumb, culprits, defaultFolderConfiguration, defaultView, demand, dependenciesFingerprintPublisher, dependency-check, dependencyCheck, dependencycheck, developers, disableConcurrentBuilds, disableRestartFromStage, disableResume, discoverOtherRefs, discoverOtherRefsTrait, downstream, dumb, durabilityHint, email-ext, envVars, envVarsFilter, environment, equals, experimentalFlags, expression, extendedEmailPublisher, file, fileParam, filePath, findbugsPublisher, fingerprint, fingerprints, fisheye, frameOptions, freeStyle, freeStyleJob, fromScm, fromSource, git, gitBranchDiscovery, gitHooks, gitHubBranchDiscovery, gitHubBranchHeadAuthority, gitHubExcludeArchivedRepositories, gitHubExcludeForkedRepositories, gitHubExcludePrivateRepositories, gitHubExcludePublicRepositories, gitHubForkDiscovery, gitHubIgnoreDraftPullRequestFilter, gitHubPullRequestDiscovery, gitHubSshCheckout, gitHubTagDiscovery, gitHubTopicsFilter, gitHubTrustContributors, gitHubTrustEveryone, gitHubTrustNobody, gitHubTrustPermissions, gitLab, gitList, gitSCM, gitTagDiscovery, gitTool, gitUsernamePassword, gitWeb, gitblit, github, githubProjectProperty, githubPush, gitiles, globalConfigFiles, gogs, gradle, headRegexFilter, headWildcardFilter, hyperlink, hyperlinkToModels, ignoreOnPush, inbound, inheriting, inheritingGlobal, installSource, invokerPublisher, isRestartedRun, jacocoPublisher, javadoc, jdk, jgit, jgitapache, jgivenPublisher, jnlp, jobBuildDiscarder, jobName, junitPublisher, junitTestResultStorage, kiln, label, lastDuration, lastFailure, lastGrantedAuthorities, lastStable, lastSuccess, legacy, legacySCM, lfs, list, local, localBranch, localBranchTrait, location, logRotator, loggedInUsersCanDoAnything, mailer, masterBuild, maven, maven3Mojos, mavenErrors, mavenGlobalConfig, mavenLinkerPublisher, mavenMojos, mavenWarnings, modernSCM, multiBranchProjectDisplayNaming, multibranch, myView, namedBranchesDifferent, node, nodeProperties, nonInheriting, none, nonresumable, not, openTasksPublisher, organizationFolder, overrideIndexTriggers, paneStatus, parallelsAlwaysFailFast, parameters, password, pattern, perBuildTag, permanent, phabricator, pipeline, pipelineGraphPublisher, pipelineMaven, pipelineTriggers, plainText, plugin, pollSCM, preserveStashes, previous, projectNamingStrategy, proxy, pruneStaleBranch, pruneStaleTag, pruneTags, queueItemAuthenticator, quietPeriod, rateLimit, rateLimitBuilds, recipients, redmine, refSpecs, remoteName, requestor, resourceRoot, retainOnlyVariables, rhodeCode, run, runParam, sSHLauncher, schedule, scmGit, scmRetryCount, scriptApproval, scriptApprovalLink, search, security, shell, simpleBuildDiscarder, skipDefaultCheckout, skipStagesAfterUnstable, slave, snapshotDependencies, sourceRegexFilter, sourceWildcardFilter, sparseCheckoutPaths, spotbugsPublisher, ssh, sshPublicKey, sshUserPrivateKey, standard, status, string, stringParam, submodule, submoduleOption, suppressAutomaticTriggering, suppressFolderAutomaticTriggering, swapSpace, tag, teamFoundation, teamSlugFilter, text, textParam, timestamper, timestamperConfig, timezone, tmpSpace, toolLocation, triggeredBy, unsecured, untrusted, upstream, upstreamDevelopers, userIdentity, userSeed, usernameColonPassword, usernamePassword, viewgit, viewsTabBar, weather, withAnt, zip] or globals [currentBuild, env, params, pipeline, scm]
+	at org.jenkinsci.plugins.workflow.cps.DSL.invokeMethod(DSL.java:219)
+	at org.jenkinsci.plugins.workflow.cps.CpsScript.invokeMethod(CpsScript.java:124)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.codehaus.groovy.reflection.CachedMethod.invoke(CachedMethod.java:98)
+	at groovy.lang.MetaMethod.doMethodInvoke(MetaMethod.java:325)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1225)
+	at groovy.lang.MetaClassImpl.invokeMethod(MetaClassImpl.java:1034)
+	at org.codehaus.groovy.runtime.callsite.PogoMetaClassSite.call(PogoMetaClassSite.java:41)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:47)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:116)
+	at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:180)
+	at org.kohsuke.groovy.sandbox.GroovyInterceptor.onMethodCall(GroovyInterceptor.java:23)
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onMethodCall(SandboxInterceptor.java:163)
+	at org.kohsuke.groovy.sandbox.impl.Checker$1.call(Checker.java:178)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:182)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedCall(Checker.java:152)
+	at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.methodCall(SandboxInvoker.java:17)
+	at WorkflowScript.run(WorkflowScript:34)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.delegateAndExecute(ModelInterpreter.groovy:137)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.executeSingleStage(ModelInterpreter.groovy:666)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.catchRequiredContextForNode(ModelInterpreter.groovy:395)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.catchRequiredContextForNode(ModelInterpreter.groovy:393)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.executeSingleStage(ModelInterpreter.groovy:665)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.evaluateStage(ModelInterpreter.groovy:288)
+	at org.jenkinsci.plugins.pipeline.modeldefinition.ModelInterpreter.toolsBlock(ModelInterpreter.groovy:539)
+	at ___cps.transform___(Native Method)
+	at com.cloudbees.groovy.cps.impl.ContinuationGroup.methodCall(ContinuationGroup.java:90)
+	at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.dispatchOrArg(FunctionCallBlock.java:116)
+	at com.cloudbees.groovy.cps.impl.FunctionCallBlock$ContinuationImpl.fixName(FunctionCallBlock.java:80)
+	at jdk.internal.reflect.GeneratedMethodAccessor144.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at com.cloudbees.groovy.cps.impl.ContinuationPtr$ContinuationImpl.receive(ContinuationPtr.java:72)
+	at com.cloudbees.groovy.cps.impl.ConstantBlock.eval(ConstantBlock.java:21)
+	at com.cloudbees.groovy.cps.Next.step(Next.java:83)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:152)
+	at com.cloudbees.groovy.cps.Continuable$1.call(Continuable.java:146)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport$ThreadCategoryInfo.use(GroovyCategorySupport.java:136)
+	at org.codehaus.groovy.runtime.GroovyCategorySupport.use(GroovyCategorySupport.java:275)
+	at com.cloudbees.groovy.cps.Continuable.run0(Continuable.java:146)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.access$001(SandboxContinuable.java:18)
+	at org.jenkinsci.plugins.workflow.cps.SandboxContinuable.run0(SandboxContinuable.java:51)
+	at org.jenkinsci.plugins.workflow.cps.CpsThread.runNextChunk(CpsThread.java:187)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup.run(CpsThreadGroup.java:420)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:330)
+	at org.jenkinsci.plugins.workflow.cps.CpsThreadGroup$2.call(CpsThreadGroup.java:294)
+	at org.jenkinsci.plugins.workflow.cps.CpsVmExecutorService$2.call(CpsVmExecutorService.java:67)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at hudson.remoting.SingleLaneExecutorService$1.run(SingleLaneExecutorService.java:139)
+	at jenkins.util.ContextResettingExecutorService$1.run(ContextResettingExecutorService.java:28)
+	at jenkins.security.ImpersonatingExecutorService$1.run(ImpersonatingExecutorService.java:68)
+	at jenkins.util.ErrorLoggingExecutorService.lambda$wrap$0(ErrorLoggingExecutorService.java:51)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:515)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Finished: FAILURE
+```
+Solucontion
+Solucion
+```bash 
+Instalar el plugin
+Warnings Next Generation
+```
+Error 4:
+```bash
+java.lang.NoSuchMethodError: No such DSL method 'publishHTML'
+```
+
+Solucion
+```bash
+HTML Publisher plugin
+```
+Error 5:
+```bash
+Also:   org.jenkinsci.plugins.workflow.actions.ErrorAction$ErrorId: 21a558fa-5ddf-45d8-a981-e1f63ad4e020
+java.lang.NoSuchMethodError: No such DSL method 'withSonarQubeEnv' found among steps [archive, bat, build, catchError, checkout, deleteDir, dependencyCheckPublisher, dir, echo, emailext, emailextrecipients, 
+```
+
+Solucion
+```bash
+SonarQube Scanner for Jenkins plugin
+```
+
+Error 6:
+```bash
+ERROR: SonarQube installation defined in this job (sonarqube-server) does not match any configured installation. Number of installations that can be configured: 0.
+If you want to reassign jobs to a different SonarQube installation, check the documentation under https://redirect.sonarsource.com/plugins/jenkins.html
+Finished: FAILURE
+```
+Configuración SinsonarQube
+
+![Alt text](image-18.png)
+ Se genera un token de sonarQube
+
+
+
+```bash
+Para solucionar este error, debes configurar una instalación de SonarQube en Jenkins siguiendo estos pasos:
+
+1. Administración de Jenkins en tu navegador web.
+2. Haz clic en "Administrar Jenkins" en el menú lateral.
+3. En la página de administración de Jenkins, busca la sección "Configurar el sistema" y haz clic en ella.
+4. Desplázate hacia abajo hasta encontrar la sección "SonarQube" 
+5. Haz Clic en "Agregar SonarQube" para añadir una nueva instalación.
+```
+Agregar en Jenkins la configuracion de SonarQube
+![Alt text](image-19.png)
+# Resultado final 
+
+![Alt text](image-20.png)
 # Log
 ```bash
 Started by user Santiago Cordero
