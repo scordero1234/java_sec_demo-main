@@ -39,6 +39,7 @@ docker-compose up
 ```
 https://localhost:8080/jenkins
 ```
+84a581bee2c547d6bff0327e482515f6
 
 ![Alt text](image-7.png)
 
@@ -49,9 +50,13 @@ docker ps
 ```bash
 docker exec -it 4a8b19d6829 /bin/bash
 ```
-Resultado del comando
+```yaml
+cat /var/jenkins_home/secrets/initialAdminPassword
+```
+
+##  Resultado del comando
 ![Alt text](image-8.png)
-## Log
+# Log
 ```bash
 Started by user Santiago Cordero
 Obtained Jenkinsfile from git https://github.com/scordero1234/java_sec_demo-main.git
